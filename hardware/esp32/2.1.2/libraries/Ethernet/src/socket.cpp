@@ -459,6 +459,15 @@ uint16_t EthernetClass::socketSend(uint8_t s, const uint8_t * buf, uint16_t len)
 		SPI.endTransaction();
 		yield();
 		SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
+#if defined(ESP32) // BUG with ESP32, the Sock_SEND command needs to be sent again?
+// This fix apparently solves it, and stops ModbusTCP from blocking in this while block
+		if (W5100.readSnIR(s) == 5)  {
+	#if defined(DEBUG)
+			Serial.println("ESP32 Bug");
+	#endif
+			W5100.execCmdSn(s, Sock_SEND);
+		}
+#endif
 	}
 	/* +2008.01 bj */
 	W5100.writeSnIR(s, SnIR::SEND_OK);

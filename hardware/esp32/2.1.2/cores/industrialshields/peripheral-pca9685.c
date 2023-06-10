@@ -83,3 +83,36 @@ bool pca9685_set_out_off(uint8_t i2cNum, uint8_t addr, uint8_t index) {
 bool pca9685_set_out_pwm(uint8_t i2cNum, uint8_t addr, uint8_t index, uint16_t value) {
 	return set_led(i2cNum, addr, index, 0x00, 0x00, value & 0xff, (value >> 8) & 0x0f);
 }
+
+bool pca9685_set_freq_pwm(uint8_t i2cNum, uint8_t addr, uint16_t freq) {
+  uint8_t buffer[2];
+
+  	buffer[0] = MODE1_REGISTER;
+	buffer[1] = MODE1_SLEEP | MODE1_AI;
+	if (i2cWrite(i2cNum, addr, buffer, 2, i2cTimeout) != ESP_OK) {
+		return false;
+	}
+
+	buffer[0] = PRE_SCALE_REGISTER;
+	
+	float prescaler = (25e6f/(4096*freq)+0.5-1);
+
+	if (prescaler > 255) buffer[1] = 255;
+	else if (prescaler < 3) buffer[1] = 3;
+	else buffer[1] = (uint8_t) prescaler;
+	
+	if (i2cWrite(i2cNum, addr, buffer, 2, i2cTimeout) != ESP_OK) {
+		return false;
+	}
+
+	buffer[0] = MODE1_REGISTER;
+	buffer[1] = MODE1_AI;
+	if (i2cWrite(i2cNum, addr, buffer, 2, i2cTimeout) != ESP_OK) {
+		return false;
+	}
+
+	delayMicroseconds(500);
+
+	return true;
+
+}

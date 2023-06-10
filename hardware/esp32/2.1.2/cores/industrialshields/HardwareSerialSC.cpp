@@ -2,6 +2,7 @@
 
 #if defined(HAVE_SERIAL_SC_0)
 SC16IS752HardwareSerial SerialSC0(SERIAL_SC_0_CS, 0);
+SC16IS752HardwareSerial Serial1(SERIAL_SC_0_CS, 0);
 #endif
 #if defined(HAVE_SERIAL_SC_1)
 SC16IS752HardwareSerial SerialSC1(SERIAL_SC_1_CS, 1);

@@ -92,6 +92,7 @@ class SC16IS752HardwareSerial : public HardwareSerial {
 
 #if defined(HAVE_SERIAL_SC_0)
 extern SC16IS752HardwareSerial SerialSC0;
+extern SC16IS752HardwareSerial Serial1;
 #endif
 #if defined(HAVE_SERIAL_SC_1)
 extern SC16IS752HardwareSerial SerialSC1;

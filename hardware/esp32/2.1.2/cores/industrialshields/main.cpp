@@ -43,6 +43,8 @@ __attribute__((weak)) size_t getArduinoLoopTaskStackSize(void) {
     return ARDUINO_LOOP_STACK_SIZE;
 }
 
+void serial1EventRun() __attribute__((weak));
+void serial2EventRun() __attribute__((weak));
 void loopTask(void *pvParameters)
 {
 	initExpandedGpio();
@@ -60,6 +62,8 @@ void loopTask(void *pvParameters)
 		}
 		loop();
 		if (serialEventRun) serialEventRun();
+		if (serial1EventRun) serial1EventRun();
+		if (serial2EventRun) serial2EventRun();
 	}
 }
 

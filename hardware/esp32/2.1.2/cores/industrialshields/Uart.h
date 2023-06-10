@@ -88,9 +88,11 @@ extern Uart Serial0;
 #else
 extern Uart Serial;
 #endif
+/*
 #if SOC_UART_NUM > 1
 extern Uart Serial1;
 #endif
+*/
 #if SOC_UART_NUM > 2
 extern Uart Serial2;
 #endif

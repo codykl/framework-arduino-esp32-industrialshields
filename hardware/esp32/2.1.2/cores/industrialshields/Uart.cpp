@@ -30,6 +30,7 @@
 void serialEvent(void) __attribute__((weak));
 void serialEvent(void) {}
 
+/*
 #if SOC_UART_NUM > 1
 
 #ifndef RX1
@@ -81,9 +82,11 @@ Uart Serial0(0);
 #else
 Uart Serial(0);
 #endif
+/*
 #if SOC_UART_NUM > 1
 Uart Serial1(1);
 #endif
+*/
 #if SOC_UART_NUM > 2
 Uart Serial2(2);
 #endif
@@ -97,9 +100,11 @@ void serialEventRun(void)
 #else
     if(Serial.available()) serialEvent();
 #endif
+/*
 #if SOC_UART_NUM > 1
     if(Serial1.available()) serialEvent1();
 #endif
+*/
 #if SOC_UART_NUM > 2
     if(Serial2.available()) serialEvent2();
 #endif
@@ -124,12 +129,14 @@ void Uart::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin
         rxPin = SOC_RX0;
         txPin = SOC_TX0;
     }
+/*
 #if SOC_UART_NUM > 1
     if(_uart_nr == 1 && rxPin < 0 && txPin < 0) {
         rxPin = RX1;
         txPin = TX1;
     }
 #endif
+*/
 #if SOC_UART_NUM > 2
     if(_uart_nr == 2 && rxPin < 0 && txPin < 0) {
         rxPin = RX2;

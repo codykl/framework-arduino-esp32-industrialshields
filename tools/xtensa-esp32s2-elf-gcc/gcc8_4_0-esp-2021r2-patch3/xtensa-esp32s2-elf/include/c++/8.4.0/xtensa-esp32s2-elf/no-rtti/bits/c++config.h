@@ -1533,10 +1533,10 @@ namespace std
 /* #undef _GLIBCXX_USE_DECIMAL_FLOAT */
 
 /* Define if fchmod is available in <sys/stat.h>. */
-/* #undef _GLIBCXX_USE_FCHMOD */
+#define _GLIBCXX_USE_FCHMOD 1
 
 /* Define if fchmodat is available in <sys/stat.h>. */
-/* #undef _GLIBCXX_USE_FCHMODAT */
+#define _GLIBCXX_USE_FCHMODAT 1
 
 /* Defined if gettimeofday is available. */
 #define _GLIBCXX_USE_GETTIMEOFDAY 1
@@ -1576,7 +1576,7 @@ namespace std
 #define _GLIBCXX_USE_SCHED_YIELD 1
 
 /* Define if _SC_NPROCESSORS_ONLN is available in <unistd.h>. */
-/* #undef _GLIBCXX_USE_SC_NPROCESSORS_ONLN */
+#define _GLIBCXX_USE_SC_NPROCESSORS_ONLN 1
 
 /* Define if _SC_NPROC_ONLN is available in <unistd.h>. */
 /* #undef _GLIBCXX_USE_SC_NPROC_ONLN */

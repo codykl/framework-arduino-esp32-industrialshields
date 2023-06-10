@@ -11,6 +11,7 @@ extern "C" {
 void initExpandedGpio();
 
 void analogWrite(uint32_t pin, uint16_t value);
+void analogWriteSetFrequency(uint8_t addr, uint16_t freq); 
 
 #ifdef __cplusplus
 }

@@ -142,6 +142,16 @@ int digitalRead(uint32_t pin) {
 	return LOW;
 }
 
+void analogWriteSetFrequency(uint8_t addr, uint16_t freq) {
+	
+#ifdef HAVE_PCA9685
+	if (isAddressIntoArray(addr, pca9685Addresses, NUM_PCA9685_DEVICES)) {
+		pca9685_set_freq_pwm(i2cNum, addr, freq);
+	}
+#endif
+	
+}
+
 void analogWrite(uint32_t pin, uint16_t value) {
 	if (!isExpandedPin(pin)) {
 		return;

@@ -12,7 +12,8 @@ bool pca9685_init(uint8_t i2cNum, uint8_t addr);
 bool pca9685_set_out_on(uint8_t i2cNum, uint8_t addr, uint8_t index);
 bool pca9685_set_out_off(uint8_t i2cNum, uint8_t addr, uint8_t index);
 bool pca9685_set_out_pwm(uint8_t i2cNum, uint8_t addr, uint8_t index, uint16_t value);
-
+bool pca9685_set_freq_pwm(uint8_t i2cNum, uint8_t addr, uint16_t freq);
+  
 #ifdef __cplusplus
 }
 #endif

@@ -364,9 +364,13 @@ static const uint32_t EXP2_AN = 0x2307;
 #else
 // RS-232
 #if defined(ESP32PLC_V3)
-#define RS232						(SerialSC0)
+#define HAVE_RS232
+#define HAVE_RS232_HARD
+#define RS232_HWSERIAL				(1)
 #elif defined(ESP32PLC_V1)
-#define RS232						(Serial)
+#define HAVE_RS232
+#define HAVE_RS232_HARD
+#define RS232_HWSERIAL				(1)
 #endif
 #endif
 

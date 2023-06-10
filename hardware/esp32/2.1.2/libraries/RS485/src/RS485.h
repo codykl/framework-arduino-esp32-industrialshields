@@ -31,18 +31,6 @@ class RS485Class : public Uart {
 
 	public:
 		virtual void begin(unsigned long baud, uint8_t duplex = HALFDUPLEX, uint32_t config = SERIAL_8N1);
-
-	public:
-		virtual size_t write(uint8_t value);
-		using Uart::write;
-
-	public:
-		bool isTxMode() const;
-		void enableTx();
-		void disableTx();
-
-	private:
-		bool txMode;
 };
 
 #endif // HAVE_RS485_HARD

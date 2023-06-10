@@ -252,8 +252,8 @@ bool TwoWire::begin(uint8_t addr, int sdaPin, int sclPin, uint32_t frequency)
         goto end;
     }
     if (!allocateWireBuffer()) {
-        // failed! Error Message already issued
-        goto end;
+      // failed! Error Message already issued
+      goto end;
     }
     if(!initPins(sdaPin, sclPin)){
         goto end;
@@ -300,8 +300,8 @@ bool TwoWire::begin(int sdaPin, int sclPin, uint32_t frequency)
     if(i2cIsInit(num)){
         log_w("Bus already started in Master Mode.");
         started = true;
-        goto end;
     }
+    
     if (!allocateWireBuffer()) {
         // failed! Error Message already issued
         goto end;
@@ -309,8 +309,11 @@ bool TwoWire::begin(int sdaPin, int sclPin, uint32_t frequency)
     if(!initPins(sdaPin, sclPin)){
         goto end;
     }
-    err = i2cInit(num, sda, scl, frequency);
-    started = (err == ESP_OK);
+
+    if (!started) {
+      err = i2cInit(num, sda, scl, frequency);
+      started = (err == ESP_OK);
+    }
 
 end:
     if (!started) freeWireBuffer();
